@@ -1,4 +1,4 @@
-import { getDb, setKV, setGuard, checkAuth, unauthorized, pbkdf2hex, randomHex } from '../../_lib.js';
+import { getDb, setKV, setGuard, checkAuth, unauthorized, pbkdf2hex, randomHex, sha256hex } from '../../_lib.js';
 export async function onRequestPut({request,env}) {
  const db=await getDb(env);
  if (!(await checkAuth(request,db))) return unauthorized();
@@ -7,7 +7,6 @@ export async function onRequestPut({request,env}) {
  const salt=randomHex(16),iterations=100000,hash=await pbkdf2hex(b.password,salt,iterations);
  await setKV(db,'admin',{salt,iterations,hash,createdAt:Date.now()});
  const keep=(request.headers.get('Authorization')||'').slice(7).trim();
- const {sha256hex}=await import('../../_lib.js');
  await db.collection('sessions').deleteMany({_id:{$ne:await sha256hex(keep)}});
  await setGuard(db,0,0);
  return Response.json({success:true});

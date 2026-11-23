@@ -13,6 +13,8 @@ export async function onRequestPost({ request, env }) {
   }
   const admin = await getKV(db, "admin");
   if (!admin) return Response.json({ success: false, error: "Dashboard login is not set up yet." }, { status: 403 });
+  const suppliedEmail=String(body.email||'').trim().toLowerCase();
+  if (!admin.email || suppliedEmail !== admin.email.toLowerCase()) return Response.json({success:false,error:'Invalid email or password'},{status:401});
   const hash = await pbkdf2hex(password, admin.salt, admin.iterations);
   if (hash !== admin.hash) {
     const fails = guard.fails + 1;
