@@ -8,6 +8,14 @@
 <meta property="og:title" content="Eng-Angluos Rezq | Software Engineer"/>
 <meta property="og:description" content="I build modern websites and powerful mobile applications."/>
 <meta property="og:type" content="website"/>
+<meta property="og:url" content="https://eng-angluos-rezq.angluosr.workers.dev/"/>
+<meta property="og:image" content="https://eng-angluos-rezq.angluosr.workers.dev/hero.jpg"/>
+<meta property="og:image:alt" content="Eng-Angluos Rezq, Software Engineer"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Eng-Angluos Rezq | Software Engineer"/>
+<meta name="twitter:description" content="Web platforms and Flutter applications by Eng-Angluos Rezq."/>
+<meta name="twitter:image" content="https://eng-angluos-rezq.angluosr.workers.dev/hero.jpg"/>
+<link rel="canonical" href="https://eng-angluos-rezq.angluosr.workers.dev/"/>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml"/>
 <link rel="preload" as="image" href="/hero.jpg"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -36,7 +44,7 @@ img{max-width:100%;display:block}
 .arrow{width:16px;height:16px}
 
 /* reveal */
-.rv{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.rv{opacity:1;transform:none}
 .rv.on{opacity:1;transform:none}
 
 /* header */
@@ -150,6 +158,54 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;margin-top:20px}
 .foot-links{display:flex;gap:22px;font-size:13.5px;color:var(--muted)}
 .foot-links a:hover{color:var(--blue)}
 .copy{color:var(--muted-2);font-size:12.5px;margin-top:26px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+/* Responsive layout: spacing belongs to the container, never the grid shorthand. */
+.hero-grid{padding:64px 24px;min-width:0}
+.hero-grid>*{min-width:0}
+.mono{font-size:13px;border-radius:5px;letter-spacing:-.05em}
+.stack-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.stack-item{padding:16px 18px;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+.stack-item strong{display:block;font-family:Sora;font-size:14px}
+.stack-item span{font-size:12px;color:var(--muted)}
+.proj .meta{padding-right:48px}
+section[id]{scroll-margin-top:90px}
+@media(max-width:920px){
+ .hero-grid{padding:40px 24px;gap:36px}
+ .hero-photo{max-width:420px;width:100%;margin:auto}
+ .hero-photo img{width:76%}
+ .stack-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:600px){
+ .wrap{padding-left:20px;padding-right:20px}
+ section{padding:52px 0}
+ .nav{height:auto;min-height:68px;gap:12px;flex-wrap:wrap;padding-top:14px;padding-bottom:12px}.nav .links{display:flex;order:3;width:100%;justify-content:space-between;gap:10px;font-size:12px}
+ .brand{gap:8px}.brand-name{font-size:12px}.brand-role{font-size:10px}
+ .mono{width:34px;height:34px;font-size:11px;flex:none}
+ .nav>.btn{font-size:11px;padding:9px 12px;white-space:nowrap;gap:5px}
+ .nav>.btn svg{width:12px}
+ .hero-grid{padding:12px 20px 0;gap:32px}
+ .hero h1{font-size:clamp(32px,9vw,44px);overflow-wrap:normal}
+ .hero-role{font-size:19px}.hero-bio{font-size:14px;margin:18px 0 24px}
+ .hero-photo{max-width:310px}.hero-photo img{width:78%}
+ .scribble{font-size:20px;right:0;top:0}
+ .hero-cta{gap:10px}.hero-cta .btn{font-size:12px;padding:12px 20px}
+ .socials{margin-top:24px}
+ .sec-head{margin-bottom:26px;gap:18px}.sec-head h2{font-size:28px}
+ .sec-head p{font-size:14px}
+ .skill-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+ .skill{padding:18px 14px;border-radius:14px}.skill h3{font-size:13px}.skill small{font-size:11px}
+ .skill .ico{width:40px;height:40px}
+ .stack-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .stack-item{padding:13px}.stack-item strong{font-size:12px}
+ .about-grid{gap:34px}.about-photo .blob{right:0;bottom:-4%}
+ .about-grid .who{font-size:14px}.exp-badge{left:10px;bottom:18px}
+ .stats{gap:10px}.stat .n{font-size:26px}.stat .t{font-size:10px}
+ .proj-grid{grid-template-columns:1fr;gap:18px}
+ .cta-band{padding:30px 24px;border-radius:20px;gap:24px}
+ .cta-band h2{font-size:26px}.cta-band p{font-size:14px}
+ .foot-links{flex-wrap:wrap;gap:16px}.foot-grid{gap:24px}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
@@ -157,7 +213,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;margin-top:20px}
 <header>
   <div class="wrap nav">
     <a class="brand" href="#home">
-      <span class="mono">AR</span>
+      <span class="mono">ENG</span>
       <span><span class="brand-name" id="brandName">Angluos Rezq</span><br/><span class="brand-role">Software Engineer</span></span>
     </a>
     <nav class="links">
@@ -243,6 +299,13 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;margin-top:20px}
     </div>
   </section>
 
+  <section id="stack">
+    <div class="wrap">
+      <div class="sec-head"><div><div class="eyebrow">My Toolkit</div><h2>Technology Stack</h2><p>The tools I use to build, test and ship working products.</p></div></div>
+      <div class="stack-grid" id="techStack"></div>
+    </div>
+  </section>
+
   <!-- ABOUT -->
   <section id="about">
     <div class="wrap about-grid">
@@ -276,7 +339,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;margin-top:20px}
       <div class="sec-head rv">
         <div>
           <div class="eyebrow">My Portfolio</div>
-          <h2>Featured Projects</h2>
+          <h2>Projects &amp; Case Studies</h2>
           <p>A collection of my recent work across web platforms, mobile apps and product design.</p>
         </div>
         <a class="view-all" href="/project.html">View All Projects
@@ -306,7 +369,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;margin-top:20px}
   <div class="wrap">
     <div class="foot-grid">
       <a class="brand" href="#home">
-        <span class="mono">AR</span>
+        <span class="mono">ENG</span>
         <span><span class="brand-name">Angluos Rezq</span><br/><span class="brand-role">Software Engineer</span></span>
       </a>
       <nav class="foot-links">
@@ -334,21 +397,8 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;margin-top:20px}
   },{threshold:.12});
   document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
 
-  /* animate bars + counters */
-  var io2 = new IntersectionObserver(function(es){
-    es.forEach(function(e){
-      if(!e.isIntersecting) return; io2.unobserve(e.target);
-      e.target.querySelectorAll('.bar i').forEach(function(b){ b.style.width = b.dataset.w + '%'; });
-      e.target.querySelectorAll('.stat .n').forEach(function(n){
-        var end = +n.dataset.count, suf = n.dataset.suffix || '', t0 = null;
-        function step(t){ if(!t0) t0=t; var p=Math.min((t-t0)/1100,1);
-          n.textContent = Math.round(end*(1-Math.pow(1-p,3))) + suf;
-          if(p<1) requestAnimationFrame(step); }
-        requestAnimationFrame(step);
-      });
-    });
-  },{threshold:.25});
-  document.querySelectorAll('.skill-grid,.stats').forEach(function(el){ io2.observe(el); });
+  document.querySelectorAll('.bar i').forEach(function(b){b.style.width=b.dataset.w+'%';});
+  document.querySelectorAll('.stat .n').forEach(function(n){n.textContent=n.dataset.count+(n.dataset.suffix||'');});
 
   /* live data */
   fetch('/api/bootstrap').then(function(r){return r.json()}).then(function(j){
@@ -393,8 +443,15 @@ footer{border-top:1px solid var(--line);padding:44px 0 34px;margin-top:20px}
     if(c.github){ var gh = /^https?:/.test(c.github) ? c.github : 'https://github.com/' + c.github.replace(/^@/,'');
       document.getElementById('scGithub').href = gh; }
 
+    var stack = document.getElementById('techStack');
+    (d.techStack || []).forEach(function(t){
+      var item=document.createElement('div');item.className='stack-item';
+      var name=document.createElement('strong');name.textContent=t.name;
+      var cat=document.createElement('span');cat.textContent=t.category || '';
+      item.appendChild(name);item.appendChild(cat);stack.appendChild(item);
+    });
     var grid = document.getElementById('projGrid');
-    var list = (d.projects||[]).filter(function(p){ return p && p.image; }).slice(0,4);
+    var list = (d.projects||[]).filter(function(p){ return p && p.image; });
     grid.innerHTML = '';
     list.forEach(function(p){
       var a = document.createElement('a');
