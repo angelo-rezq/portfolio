@@ -33,6 +33,7 @@ export default {
       if (p.startsWith("/api/")) return Response.json({ success: false, error: "Not found" }, { status: 404 });
       return env.ASSETS.fetch(request);
     } catch (e) {
+      try { const mu = new URL(env.MONGODB_URI.replace(/^mongodb\+srv/, "mongodb").replace(/^mongodb/, "https")); console.error("DBG uri user=" + decodeURIComponent(mu.username) + " host=" + mu.hostname + " db=" + mu.pathname); } catch (_) {}
       console.error("DBG fetch error:", e && e.message, e && e.name);
       return Response.json({ success: false, error: "Internal error" }, { status: 500 });
     }
