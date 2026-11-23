@@ -2,6 +2,7 @@ import * as bootstrapApi from "./handlers/api/bootstrap.js";
 import * as portfolio from "./handlers/api/portfolio.js";
 import * as projectsIndex from "./handlers/api/projects/index.js";
 import * as projectsId from "./handlers/api/projects/[id].js";
+import * as password from "./handlers/api/auth/password.js";
 import * as login from "./handlers/api/auth/login.js";
 import * as setup from "./handlers/api/setup.js";
 import * as rotate from "./handlers/api/rotate.js";
@@ -27,6 +28,7 @@ export default {
         if (m === "PUT") return await projectsId.onRequestPut({ request, env, params });
         if (m === "DELETE") return await projectsId.onRequestDelete({ request, env, params });
       }
+      if (p === "/api/auth/password" && m === "PUT") return await password.onRequestPut({request,env});
       if (p === "/api/auth/login" && m === "POST") return await login.onRequestPost({ request, env });
       if (p === "/api/setup" && m === "POST") return await setup.onRequestPost({ request, env });
       if (p === "/api/rotate" && m === "POST") return await rotate.onRequestPost({ request, env });

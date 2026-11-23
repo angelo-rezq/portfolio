@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Eng-Angluos Rezq | Software Engineer</title>
-<meta name="description" content="Angluos Rezq - Software Engineer specializing in web and Flutter development. Founder of Zone A and Hexa Plus."/>
-<meta property="og:title" content="Eng-Angluos Rezq | Software Engineer"/>
-<meta property="og:description" content="I build modern websites and powerful mobile applications."/>
+<title>Eng. Angluos Rezq | Software Engineer</title>
+<meta name="description" content="Eng. Angluos Rezq, Software Engineer. Explore web platforms, Flutter applications and project case studies."/>
+<meta property="og:title" content="Eng. Angluos Rezq | Software Engineer"/>
+<meta property="og:description" content="Eng. Angluos Rezq, Software Engineer. Web platforms, Flutter applications and project case studies."/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://eng-angluos-rezq.angluosr.workers.dev/"/>
 <meta property="og:image" content="https://eng-angluos-rezq.angluosr.workers.dev/hero.jpg"/>
 <meta property="og:image:alt" content="Eng-Angluos Rezq, Software Engineer"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="Eng-Angluos Rezq | Software Engineer"/>
+<meta name="twitter:title" content="Eng. Angluos Rezq | Software Engineer"/>
 <meta name="twitter:description" content="Web platforms and Flutter applications by Eng-Angluos Rezq."/>
 <meta name="twitter:image" content="https://eng-angluos-rezq.angluosr.workers.dev/hero.jpg"/>
 <link rel="canonical" href="https://eng-angluos-rezq.angluosr.workers.dev/"/>
@@ -206,6 +206,16 @@ section[id]{scroll-margin-top:90px}
  .foot-links{flex-wrap:wrap;gap:16px}.foot-grid{gap:24px}
 }
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+.stack-marquee{border:1px solid var(--line);border-radius:18px;background:var(--card);overflow:hidden;padding:22px 0;mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
+.stack-track{display:flex;width:max-content;animation:stack-scroll 105s linear infinite}
+.stack-group{display:flex;align-items:center;gap:38px;padding-right:38px}
+.tech-token{display:flex;align-items:center;gap:10px;white-space:nowrap;font-size:14px;font-weight:600}
+.tech-token img{width:24px;height:24px;object-fit:contain}
+.stack-marquee:hover .stack-track,.stack-marquee:focus-within .stack-track{animation-play-state:paused}
+@keyframes stack-scroll{to{transform:translateX(-50%)}}
+@media(max-width:600px){.stack-marquee{padding:20px 0;border-radius:14px}.stack-group{gap:28px;padding-right:28px}.tech-token{font-size:13px}}
+@media(prefers-reduced-motion:reduce){.stack-marquee{overflow:auto}.stack-track{animation:none}.stack-group[aria-hidden]{display:none}}
 </style>
 </head>
 <body>
@@ -302,7 +312,7 @@ section[id]{scroll-margin-top:90px}
   <section id="stack">
     <div class="wrap">
       <div class="sec-head"><div><div class="eyebrow">My Toolkit</div><h2>Technology Stack</h2><p>The tools I use to build, test and ship working products.</p></div></div>
-      <div class="stack-grid" id="techStack"></div>
+      <div class="stack-marquee" aria-label="Technology stack"><div class="stack-track" id="techStack"></div></div>
     </div>
   </section>
 
@@ -444,12 +454,17 @@ section[id]{scroll-margin-top:90px}
       document.getElementById('scGithub').href = gh; }
 
     var stack = document.getElementById('techStack');
-    (d.techStack || []).forEach(function(t){
-      var item=document.createElement('div');item.className='stack-item';
-      var name=document.createElement('strong');name.textContent=t.name;
-      var cat=document.createElement('span');cat.textContent=t.category || '';
-      item.appendChild(name);item.appendChild(cat);stack.appendChild(item);
-    });
+    var iconMap={'React':'react','Flutter':'flutter','Node.js':'nodedotjs','Firebase':'firebase','Next.js':'nextdotjs','Tailwind CSS':'tailwindcss','TypeScript':'typescript','Express.js':'express','MongoDB':'mongodb','PostgreSQL':'postgresql','GraphQL':'graphql','Docker':'docker','AWS':'amazonwebservices','Git & GitHub':'github','Redux':'redux','Jest':'jest','Python':'python','Figma':'figma','REST API':'openapiinitiative','Material UI':'mui','Webpack':'webpack','VS Code':'vscode'};
+    for(var copy=0;copy<2;copy++){
+      var group=document.createElement('div');group.className='stack-group';
+      if(copy)group.setAttribute('aria-hidden','true');
+      (d.techStack || []).forEach(function(t){
+        var item=document.createElement('div');item.className='tech-token';
+        var icon=document.createElement('img');icon.src='/tech-icons/'+(iconMap[t.name]||'code')+'.svg';icon.alt='';icon.width=24;icon.height=24;
+        var name=document.createElement('span');name.textContent=t.name;
+        item.appendChild(icon);item.appendChild(name);group.appendChild(item);
+      });stack.appendChild(group);
+    }
     var grid = document.getElementById('projGrid');
     var list = (d.projects||[]).filter(function(p){ return p && p.image; });
     grid.innerHTML = '';

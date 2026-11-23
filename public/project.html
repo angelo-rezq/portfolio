@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Project - Angelo</title>
-<meta name="robots" content="noindex"/>
+<meta name="description" content="Project case studies by Eng. Angluos Rezq, Software Engineer."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Sora:wght@400;600;700;800&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Source+Code+Pro:wght@400;600&amp;display=swap" rel="stylesheet"/>
@@ -23,7 +23,7 @@ html{background:#0a0a0f}
 .pj-shot img{width:100%;height:auto;display:block}
 .pj-shot figcaption{padding:.6rem .9rem;font-size:.78rem;color:hsl(var(--muted-foreground))}
 .pj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(260px,100%),1fr));gap:1rem}
-</style>
+html,body{background:#171a1c!important;color:#fff!important;font-family:Inter,system-ui,sans-serif}.pj-hero-img{object-fit:contain;background:#1d2226;max-height:65vh}.case-section{border:1px solid #30383e;border-radius:16px;background:#1d2226;padding:24px;margin-top:24px}.case-section h2{font-family:Sora;font-size:20px;font-weight:700;margin:0 0 12px}.case-section p,.case-section li{color:#acb4b9;line-height:1.8}.case-section ul{padding-left:20px;list-style:disc}.pj-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.pj-list a{border:1px solid #30383e;border-radius:14px;padding:16px;background:#1d2226}.pj-list img{width:100%;height:200px;object-fit:cover;border-radius:9px;margin-bottom:12px}@media(max-width:600px){.pj-list{grid-template-columns:1fr}.case-section{padding:20px}.pj-hero-img{border-radius:14px}}</style>
 </head>
 <body class="font-body antialiased bg-background text-foreground min-h-screen">
 <div class="container mx-auto px-4 sm:px-6 py-8 max-w-4xl">
@@ -38,6 +38,7 @@ fetch('/api/bootstrap').then(function(r){return r.json()}).then(function(d){
   var list = data.projects || [];
   var p = list.filter(function(x){return String(x.id)===id})[0] || list.filter(function(x){return x.name===id})[0];
   var app = document.getElementById('app');
+  if(!id){app.innerHTML='<h1 style="font:700 32px Sora;margin-bottom:24px">Project Library</h1><div class="pj-list">'+list.map(function(x){return '<a href="/project.html?id='+encodeURIComponent(x.id)+'">'+(x.image?'<img src="'+esc(x.image)+'" alt="'+esc(x.name)+'">':'')+'<h2>'+esc(x.name)+'</h2><p style="color:#acb4b9;font-size:13px">'+esc(x.tagline)+'</p></a>'}).join('')+'</div>';return;}
   if(!p){ app.innerHTML = '<p style="color:hsl(var(--muted-foreground))">Project not found. <a href="/#projects" style="color:hsl(var(--primary))">Back to projects</a></p>'; return; }
   document.title = p.name + ' - Angelo';
   var h = '';
@@ -50,12 +51,17 @@ fetch('/api/bootstrap').then(function(r){return r.json()}).then(function(d){
   if(p.tagline) h += '<p class="text-gradient font-headline" style="font-weight:700;font-size:1.05rem;margin-top:.4rem">'+esc(p.tagline)+'</p>';
   if(p.descriptionEn) h += '<p style="color:hsl(var(--muted-foreground));margin-top:1rem;line-height:1.7;max-width:46rem">'+esc(p.descriptionEn)+'</p>';
   if(p.description && p.description !== p.descriptionEn) h += '<p dir="auto" style="color:hsl(var(--muted-foreground));margin-top:.8rem;line-height:1.9;max-width:46rem">'+esc(p.description)+'</p>';
+  if(p.caseStudy){var cs=p.caseStudy;
+    h+='<section class="case-section"><h2>Project Overview</h2><p>'+esc(cs.context||p.descriptionEn||'')+'</p></section>';
+    if(cs.features&&cs.features.length)h+='<section class="case-section"><h2>Main Workflows</h2><ul>'+cs.features.map(function(f){return '<li>'+esc(f)+'</li>'}).join('')+'</ul></section>';
+    if(cs.scope)h+='<section class="case-section"><h2>Scope &amp; Evidence</h2><p>'+esc(cs.scope)+'</p></section>';
+  }
   var tech = Array.isArray(p.tech) ? p.tech : String(p.tech||'').split(',');
   tech = tech.map(function(t){return String(t).trim()}).filter(Boolean);
   if(tech.length){ h += '<div style="display:flex;flex-wrap:wrap;gap:.45rem;margin-top:1.2rem">'; tech.forEach(function(t){ h += '<span class="pj-pill">'+esc(t)+'</span>'; }); h += '</div>'; }
   var links = '';
-  if(p.demo) links += '<a class="pj-btn pj-btn-primary" href="'+esc(p.demo)+'" target="_blank" rel="noopener noreferrer">Live Demo</a>';
-  if(p.github) links += '<a class="pj-btn pj-btn-ghost" href="'+esc(p.github)+'" target="_blank" rel="noopener noreferrer">GitHub</a>';
+  if(p.demo && !p.demo.includes('example.com')) links += '<a class="pj-btn pj-btn-primary" href="'+esc(p.demo)+'" target="_blank" rel="noopener noreferrer">Live Demo</a>';
+  if(p.github && !p.github.includes('github.com/oaama')) links += '<a class="pj-btn pj-btn-ghost" href="'+esc(p.github)+'" target="_blank" rel="noopener noreferrer">GitHub</a>';
   if(p.drive) links += '<a class="pj-btn pj-btn-ghost" href="'+esc(p.drive)+'" target="_blank" rel="noopener noreferrer">Drive</a>';
   if(links) h += '<div style="display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.6rem">'+links+'</div>';
   var shots = Array.isArray(p.screenshots) ? p.screenshots : [];
