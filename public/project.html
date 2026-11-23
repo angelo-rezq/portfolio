@@ -52,13 +52,17 @@ fetch('/api/bootstrap').then(function(r){return r.json()}).then(function(d){
   if(p.descriptionEn) h += '<p style="color:hsl(var(--muted-foreground));margin-top:1rem;line-height:1.7;max-width:46rem">'+esc(p.descriptionEn)+'</p>';
   if(p.description && p.description !== p.descriptionEn) h += '<p dir="auto" style="color:hsl(var(--muted-foreground));margin-top:.8rem;line-height:1.9;max-width:46rem">'+esc(p.description)+'</p>';
   if(p.caseStudy){var cs=p.caseStudy;
-    h+='<section class="case-section"><h2>Project Overview</h2><p>'+esc(cs.context||p.descriptionEn||'')+'</p></section>';
-    if(cs.features&&cs.features.length)h+='<section class="case-section"><h2>Main Workflows</h2><ul>'+cs.features.map(function(f){return '<li>'+esc(f)+'</li>'}).join('')+'</ul></section>';
-    if(cs.scope)h+='<section class="case-section"><h2>Scope &amp; Evidence</h2><p>'+esc(cs.scope)+'</p></section>';
+    if(cs.problem){
+      [['Problem',cs.problem],['Solution',cs.solution],['Outcome',cs.outcome]].forEach(function(row){if(row[1])h+='<section class="case-section"><h2>'+row[0]+'</h2><p>'+esc(row[1])+'</p></section>';});
+    }else{
+      h+='<section class="case-section"><h2>Project Overview</h2><p>'+esc(cs.context||p.descriptionEn||'')+'</p></section>';
+      if(cs.features&&cs.features.length)h+='<section class="case-section"><h2>Main Workflows</h2><ul>'+cs.features.map(function(f){return '<li>'+esc(f)+'</li>'}).join('')+'</ul></section>';
+      if(cs.scope)h+='<section class="case-section"><h2>Scope &amp; Evidence</h2><p>'+esc(cs.scope)+'</p></section>';
+    }
   }
   var tech = Array.isArray(p.tech) ? p.tech : String(p.tech||'').split(',');
   tech = tech.map(function(t){return String(t).trim()}).filter(Boolean);
-  if(tech.length){ h += '<div style="display:flex;flex-wrap:wrap;gap:.45rem;margin-top:1.2rem">'; tech.forEach(function(t){ h += '<span class="pj-pill">'+esc(t)+'</span>'; }); h += '</div>'; }
+  if(tech.length){ h += '<h2 style="font:700 20px Sora;margin-top:28px">Stack</h2><div style="display:flex;flex-wrap:wrap;gap:.45rem;margin-top:1.2rem">'; tech.forEach(function(t){ h += '<span class="pj-pill">'+esc(t)+'</span>'; }); h += '</div>'; }
   var links = '';
   if(p.demo && !p.demo.includes('example.com')) links += '<a class="pj-btn pj-btn-primary" href="'+esc(p.demo)+'" target="_blank" rel="noopener noreferrer">Live Demo</a>';
   if(p.github && !p.github.includes('github.com/oaama')) links += '<a class="pj-btn pj-btn-ghost" href="'+esc(p.github)+'" target="_blank" rel="noopener noreferrer">GitHub</a>';

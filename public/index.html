@@ -135,8 +135,8 @@ section{padding:88px 0}
 .proj .meta{padding:16px 18px 18px}
 .proj h3{font-size:15px;font-weight:700}
 .proj small{color:var(--muted-2);font-size:12px;display:block;margin-top:3px}
-.proj .go{position:absolute;right:14px;bottom:14px;width:32px;height:32px;border-radius:99px;background:var(--blue-soft);display:grid;place-items:center;color:var(--blue);transition:all .25s}
-.proj:hover .go{background:var(--blue);color:#fff}
+.proj .go{position:absolute;right:15px;bottom:18px;width:18px;height:18px;min-width:18px;padding:0;border:0;border-radius:0;background:transparent;display:grid;place-items:center;color:var(--blue);transition:transform .25s}
+.proj:hover .go{transform:translate(2px,-2px);color:#fff;background:transparent}
 .proj .go svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 .view-all{font-family:Sora;font-size:13.5px;font-weight:600;color:var(--blue);display:inline-flex;align-items:center;gap:6px}
 .view-all:hover{text-decoration:underline}
@@ -223,7 +223,7 @@ section[id]{scroll-margin-top:90px}
 section{padding-top:62px;padding-bottom:62px}.sec-head{margin-bottom:30px}
 @media(max-width:920px){.proj-grid{grid-auto-columns:calc((100% - 18px)/2);grid-template-columns:none}}
 @media(max-width:600px){section{padding-top:38px;padding-bottom:38px}.hero-grid{gap:24px}.sec-head{margin-bottom:22px}.proj-grid{grid-auto-columns:86%;grid-template-columns:none;gap:14px}.proj .thumb{aspect-ratio:4/3}.proj .meta{min-height:96px}#stack{padding-top:28px;padding-bottom:28px}}
-</style>
+.proj .meta{padding-right:42px}.proj small{line-height:1.6;max-width:100%}.proj .go svg{width:13px;height:13px}</style>
 </head>
 <body>
 
@@ -483,7 +483,7 @@ section{padding-top:62px;padding-bottom:62px}.sec-head{margin-bottom:30px}
       th.appendChild(im);
       var mt = document.createElement('div'); mt.className='meta';
       var h = document.createElement('h3'); h.textContent = p.name || '';
-      var s = document.createElement('small'); s.textContent = p.tagline || p.category || '';
+      var s = document.createElement('small'); s.textContent = p.caption || p.tagline || p.category || '';
       mt.appendChild(h); mt.appendChild(s);
       var go = document.createElement('span'); go.className='go';
       go.innerHTML = '<svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg>';
