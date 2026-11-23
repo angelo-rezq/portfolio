@@ -223,7 +223,10 @@ section[id]{scroll-margin-top:90px}
 section{padding-top:62px;padding-bottom:62px}.sec-head{margin-bottom:30px}
 @media(max-width:920px){.proj-grid{grid-auto-columns:calc((100% - 18px)/2);grid-template-columns:none}}
 @media(max-width:600px){section{padding-top:38px;padding-bottom:38px}.hero-grid{gap:24px}.sec-head{margin-bottom:22px}.proj-grid{grid-auto-columns:86%;grid-template-columns:none;gap:14px}.proj .thumb{aspect-ratio:4/3}.proj .meta{min-height:96px}#stack{padding-top:28px;padding-bottom:28px}}
-.proj .meta{padding-right:42px}.proj small{line-height:1.6;max-width:100%}.proj .go svg{width:13px;height:13px}</style>
+.proj .meta{padding-right:42px}.proj small{line-height:1.6;max-width:100%}.proj .go svg{width:13px;height:13px}
+/* Compact, centered footer and a gently moving project strip. */
+footer{padding:24px 0 20px;margin-top:0;text-align:center}.foot-grid{flex-direction:column;justify-content:center;gap:16px}.foot-links{justify-content:center;gap:18px;flex-wrap:wrap}.copy{justify-content:center;flex-direction:column;gap:6px;margin-top:16px}.foot-grid .brand{justify-content:center}.legal-links{display:flex;justify-content:center;gap:20px;color:var(--muted);font-size:12px}#contact{padding-bottom:28px}.proj-grid{grid-auto-columns:250px;scroll-snap-type:none;padding-bottom:10px}.proj .thumb{aspect-ratio:16/11}.proj .thumb img{object-fit:contain;background:#14181b}.proj .meta{padding:12px 36px 14px 14px;min-height:84px}.proj h3{font-size:14px}.proj small{font-size:11px;line-height:1.5}.proj .go{bottom:20px}.projects-motion{display:flex;justify-content:flex-end;margin-top:10px}.motion-toggle{background:transparent;border:1px solid var(--line);border-radius:8px;padding:7px 11px;color:var(--muted);font-size:11px;cursor:pointer}@media(max-width:600px){.proj-grid{grid-auto-columns:76%;gap:12px}.proj .meta{min-height:82px}footer{padding:22px 0 18px}.foot-grid{gap:14px}.copy{margin-top:14px}.foot-links{gap:14px}.cta-band{gap:20px}}
+</style>
 </head>
 <body>
 
@@ -397,6 +400,7 @@ section{padding-top:62px;padding-bottom:62px}.sec-head{margin-bottom:30px}
         <a id="ftLinkedin" href="#" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0ZM.2 8.4h4.6V24H.2V8.4Zm7.6 0h4.4v2.1h.06c.61-1.16 2.1-2.38 4.34-2.38 4.64 0 5.5 3.05 5.5 7.02V24h-4.6v-7.9c0-1.88-.04-4.3-2.62-4.3-2.62 0-3.02 2.05-3.02 4.16V24H7.8V8.4Z"/></svg></a>
       </div>
     </div>
+    <!-- Policy links added after wording review. -->
     <div class="copy">
       <span>© <span id="yr">2026</span> Eng-Angluos Rezq. All rights reserved.</span>
       <span>Designed &amp; built by Eng-Angluos Rezq</span>
@@ -418,7 +422,7 @@ section{padding-top:62px;padding-bottom:62px}.sec-head{margin-bottom:30px}
   document.querySelectorAll('.stat .n').forEach(function(n){n.textContent=n.dataset.count+(n.dataset.suffix||'');});
 
   /* live data */
-  fetch('/api/bootstrap').then(function(r){return r.json()}).then(function(j){
+  Promise.all([fetch('/api/bootstrap').then(r=>r.json()),fetch('/case-studies.json').then(r=>r.json())]).then(function(results){var j=results[0],cases=results[1];if(j.data)(j.data.projects||[]).forEach(p=>{if(cases[p.id]){p.caption=cases[p.id].caption;p.caseStudy=cases[p.id];if(cases[p.id].stack)p.tech=cases[p.id].stack;}});
     if(!j || !j.success || !j.data) return;
     var d = j.data;
 
@@ -479,7 +483,7 @@ section{padding-top:62px;padding-bottom:62px}.sec-head{margin-bottom:30px}
       var a = document.createElement('a');
       a.className = 'proj'; a.href = '/project.html?id=' + encodeURIComponent(p.id || p._id || '');
       var th = document.createElement('div'); th.className='thumb';
-      var im = document.createElement('img'); im.loading='lazy'; im.alt = p.name || 'Project'; im.src = p.image;
+      var im = document.createElement('img'); im.loading='eager'; im.decoding='async'; im.alt = p.name || 'Project'; im.src = p.image;
       th.appendChild(im);
       var mt = document.createElement('div'); mt.className='meta';
       var h = document.createElement('h3'); h.textContent = p.name || '';
@@ -493,6 +497,7 @@ section{padding-top:62px;padding-bottom:62px}.sec-head{margin-bottom:30px}
   }).catch(function(){});
 })();
 </script>
+<script src="/project-motion.js" defer></script>
 <script src="/language.js" defer></script>
 </body>
 </html>

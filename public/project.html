@@ -23,7 +23,7 @@ html{background:#0a0a0f}
 .pj-shot img{width:100%;height:auto;display:block}
 .pj-shot figcaption{padding:.6rem .9rem;font-size:.78rem;color:hsl(var(--muted-foreground))}
 .pj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(260px,100%),1fr));gap:1rem}
-html,body{background:#171a1c!important;color:#fff!important;font-family:Inter,system-ui,sans-serif}.pj-hero-img{object-fit:contain;background:#1d2226;max-height:65vh}.case-section{border:1px solid #30383e;border-radius:16px;background:#1d2226;padding:24px;margin-top:24px}.case-section h2{font-family:Sora;font-size:20px;font-weight:700;margin:0 0 12px}.case-section p,.case-section li{color:#acb4b9;line-height:1.8}.case-section ul{padding-left:20px;list-style:disc}.pj-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.pj-list a{border:1px solid #30383e;border-radius:14px;padding:16px;background:#1d2226}.pj-list img{width:100%;height:200px;object-fit:cover;border-radius:9px;margin-bottom:12px}@media(max-width:600px){.pj-list{grid-template-columns:1fr}.case-section{padding:20px}.pj-hero-img{border-radius:14px}}</style>
+html,body{background:#171a1c!important;color:#fff!important;font-family:Inter,system-ui,sans-serif}.pj-hero-img{object-fit:contain;background:#1d2226;max-height:65vh}.case-section{border:1px solid #30383e;border-radius:16px;background:#1d2226;padding:24px;margin-top:24px}.case-section h2{font-family:Sora;font-size:20px;font-weight:700;margin:0 0 12px}.case-section p,.case-section li{color:#acb4b9;line-height:1.8}.case-section ul{padding-left:20px;list-style:disc}.pj-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.pj-list a{border:1px solid #30383e;border-radius:14px;padding:16px;background:#1d2226}.pj-list img{width:100%;height:200px;object-fit:cover;border-radius:9px;margin-bottom:12px}@media(max-width:600px){.pj-list{grid-template-columns:1fr}.case-section{padding:20px}.pj-hero-img{border-radius:14px}}.case-section{position:relative;overflow:hidden;border-color:#303b45;background:linear-gradient(135deg,#1d252c,#1a1f23);box-shadow:0 10px 26px #0002}.case-section h2{display:flex;align-items:center;gap:12px;font-size:19px}.case-icon{display:inline-grid;place-items:center;flex-shrink:0;width:34px;height:34px;border:1px solid #4294ff55;border-radius:10px;background:#4294ff16;color:#74b1ff;font:600 22px Arial}.case-outcome .case-icon{color:#7ed6b0;background:#58b28b16;border-color:#58b28b55}.case-section p{font-size:15px}.case-section{animation:case-in .6s ease both}@keyframes case-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}@media(prefers-reduced-motion:reduce){.case-section{animation:none}} </style>
 </head>
 <body class="font-body antialiased bg-background text-foreground min-h-screen">
 <div class="container mx-auto px-4 sm:px-6 py-8 max-w-4xl">
@@ -32,10 +32,10 @@ html,body{background:#171a1c!important;color:#fff!important;font-family:Inter,sy
 </div>
 <script>
 function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
-fetch('/api/bootstrap').then(function(r){return r.json()}).then(function(d){
+Promise.all([fetch('/api/bootstrap').then(r=>r.json()),fetch('/case-studies.json').then(r=>r.json())]).then(function(results){var d=results[0],cases=results[1];
   var data = d.data || d;
   var id = new URLSearchParams(location.search).get('id');
-  var list = data.projects || [];
+  var list = data.projects || [];list.forEach(p=>{if(cases[p.id]){p.caption=cases[p.id].caption;p.caseStudy=cases[p.id];if(cases[p.id].stack)p.tech=cases[p.id].stack;}});
   var p = list.filter(function(x){return String(x.id)===id})[0] || list.filter(function(x){return x.name===id})[0];
   var app = document.getElementById('app');
   if(!id){app.innerHTML='<h1 style="font:700 32px Sora;margin-bottom:24px">Project Library</h1><div class="pj-list">'+list.map(function(x){return '<a href="/project.html?id='+encodeURIComponent(x.id)+'">'+(x.image?'<img src="'+esc(x.image)+'" alt="'+esc(x.name)+'">':'')+'<h2>'+esc(x.name)+'</h2><p style="color:#acb4b9;font-size:13px">'+esc(x.tagline)+'</p></a>'}).join('')+'</div>';return;}
@@ -53,7 +53,7 @@ fetch('/api/bootstrap').then(function(r){return r.json()}).then(function(d){
 
   if(p.caseStudy){var cs=p.caseStudy;
     if(cs.problem){
-      [['Problem',cs.problem],['Solution',cs.solution],['Outcome',cs.outcome]].forEach(function(row){if(row[1])h+='<section class="case-section"><h2>'+row[0]+'</h2><p>'+esc(row[1])+'</p></section>';});
+      [['Problem',cs.problem],['Solution',cs.solution],['Outcome',cs.outcome]].forEach(function(row){if(row[1])h+='<section class="case-section case-'+row[0].toLowerCase()+'"><h2><span class="case-icon" aria-hidden="true">'+({Problem:'◎',Solution:'⌘',Outcome:'✓'}[row[0]])+'</span><span>'+row[0]+'</span></h2><p data-case-field="'+row[0].toLowerCase()+'">'+esc(row[1])+'</p></section>';});
     }else{
       h+='<section class="case-section"><h2>Project Overview</h2><p data-case-context>'+esc(cs.context||p.descriptionEn||'')+'</p></section>';
       if(cs.features&&cs.features.length)h+='<section class="case-section"><h2>Main Workflows</h2><ul data-case-features>'+cs.features.map(function(f){return '<li>'+esc(f)+'</li>'}).join('')+'</ul></section>';
@@ -79,6 +79,7 @@ fetch('/api/bootstrap').then(function(r){return r.json()}).then(function(d){
   document.getElementById('app').innerHTML = '<p style="color:hsl(var(--muted-foreground))">Could not load this project right now.</p>';
 });
 </script>
+<script src="/project-motion.js" defer></script>
 <script src="/language.js" defer></script>
 </body>
 </html>
