@@ -4,7 +4,7 @@
 
 **Serverless personal portfolio with a password-protected admin dashboard for live content editing**
 
-[![Live Demo](https://img.shields.io/badge/🚀_Live_Site-Visit-success?style=for-the-badge)](https://angelo-portfolio.angluosr.workers.dev)
+[![Live Demo](https://img.shields.io/badge/🚀_Live_Site-Visit-success?style=for-the-badge)](https://eng-angluos-rezq.angluosr.workers.dev)
 
 [![Cloudflare Workers](https://img.shields.io/badge/Cloudflare_Workers-F38020?style=flat-square&logo=cloudflareworkers&logoColor=white)](https://workers.cloudflare.com)
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)](https://developer.mozilla.org/docs/Web/JavaScript)
@@ -17,8 +17,8 @@
 
 ## 🌐 Live
 
-- **Site:** [angelo-portfolio.angluosr.workers.dev](https://angelo-portfolio.angluosr.workers.dev)
-- **Admin dashboard:** [angelo-portfolio.angluosr.workers.dev/dash-admin](https://angelo-portfolio.angluosr.workers.dev/dash-admin)
+- **Site:** [eng-angluos-rezq.angluosr.workers.dev](https://eng-angluos-rezq.angluosr.workers.dev)
+- **Admin dashboard:** [eng-angluos-rezq.angluosr.workers.dev/dash-admin](https://eng-angluos-rezq.angluosr.workers.dev/dash-admin)
 
 ## ✨ Features
 
@@ -55,7 +55,7 @@ npx wrangler deploy   # publish to the edge
 
 **Full-Stack Developer · Flutter · Next.js · React**
 
-[![Portfolio](https://img.shields.io/badge/Portfolio-black?style=for-the-badge)](https://angelo-portfolio.angluosr.workers.dev)
+[![Portfolio](https://img.shields.io/badge/Eng_Angluos_Rezq-black?style=for-the-badge)](https://eng-angluos-rezq.angluosr.workers.dev)
 [![WhatsApp](https://img.shields.io/badge/WhatsApp-Chat-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://wa.me/201127570256)
 [![Email](https://img.shields.io/badge/Email-angelo.rezq.dev%40gmail.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:angelo.rezq.dev@gmail.com)
 
