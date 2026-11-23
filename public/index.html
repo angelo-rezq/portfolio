@@ -216,6 +216,13 @@ section[id]{scroll-margin-top:90px}
 @keyframes stack-scroll{to{transform:translateX(-50%)}}
 @media(max-width:600px){.stack-marquee{padding:20px 0;border-radius:14px}.stack-group{gap:28px;padding-right:28px}.tech-token{font-size:13px}}
 @media(prefers-reduced-motion:reduce){.stack-marquee{overflow:auto}.stack-track{animation:none}.stack-group[aria-hidden]{display:none}}
+
+/* Swipeable project library, three at desktop, one plus a swipe cue on phones. */
+.proj-grid{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 36px)/3);grid-template-columns:none;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 2px;padding:4px 2px 18px;overscroll-behavior-x:contain;scrollbar-color:#4294ff #1d2226;scrollbar-width:thin}
+.proj{scroll-snap-align:start;min-width:0}.proj:hover{transform:none}
+section{padding-top:62px;padding-bottom:62px}.sec-head{margin-bottom:30px}
+@media(max-width:920px){.proj-grid{grid-auto-columns:calc((100% - 18px)/2);grid-template-columns:none}}
+@media(max-width:600px){section{padding-top:38px;padding-bottom:38px}.hero-grid{gap:24px}.sec-head{margin-bottom:22px}.proj-grid{grid-auto-columns:86%;grid-template-columns:none;gap:14px}.proj .thumb{aspect-ratio:4/3}.proj .meta{min-height:96px}#stack{padding-top:28px;padding-bottom:28px}}
 </style>
 </head>
 <body>
@@ -355,7 +362,7 @@ section[id]{scroll-margin-top:90px}
         <a class="view-all" href="/project.html">View All Projects
           <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6l6 6-6 6"/></svg></a>
       </div>
-      <div class="proj-grid rv" id="projGrid"></div>
+      <p style="color:var(--muted);font-size:12px;margin:-12px 0 18px">Swipe or scroll to explore all projects →</p><div class="proj-grid rv" id="projGrid" tabindex="0" aria-label="Swipeable project library"></div>
     </div>
   </section>
 
