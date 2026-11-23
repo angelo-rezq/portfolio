@@ -48,15 +48,15 @@ fetch('/api/bootstrap').then(function(r){return r.json()}).then(function(d){
   if(p.category) h += '<span class="pj-chip">'+esc(p.category)+'</span>';
   if(p.status) h += '<span class="pj-chip" style="background:rgba(255,255,255,.06);color:hsl(var(--muted-foreground))">'+esc(p.status)+'</span>';
   h += '</div>';
-  if(p.tagline) h += '<p class="text-gradient font-headline" style="font-weight:700;font-size:1.05rem;margin-top:.4rem">'+esc(p.tagline)+'</p>';
-  if(p.descriptionEn) h += '<p style="color:hsl(var(--muted-foreground));margin-top:1rem;line-height:1.7;max-width:46rem">'+esc(p.descriptionEn)+'</p>';
-  if(p.description && p.description !== p.descriptionEn) h += '<p dir="auto" style="color:hsl(var(--muted-foreground));margin-top:.8rem;line-height:1.9;max-width:46rem">'+esc(p.description)+'</p>';
+  if(p.tagline) h += '<p data-project-tagline class="text-gradient font-headline" style="font-weight:700;font-size:1.05rem;margin-top:.4rem">'+esc(p.tagline)+'</p>';
+  if(p.descriptionEn||p.description) h += '<p data-project-description style="color:hsl(var(--muted-foreground));margin-top:1rem;line-height:1.7;max-width:46rem">'+esc(p.descriptionEn)+'</p>';
+
   if(p.caseStudy){var cs=p.caseStudy;
     if(cs.problem){
       [['Problem',cs.problem],['Solution',cs.solution],['Outcome',cs.outcome]].forEach(function(row){if(row[1])h+='<section class="case-section"><h2>'+row[0]+'</h2><p>'+esc(row[1])+'</p></section>';});
     }else{
-      h+='<section class="case-section"><h2>Project Overview</h2><p>'+esc(cs.context||p.descriptionEn||'')+'</p></section>';
-      if(cs.features&&cs.features.length)h+='<section class="case-section"><h2>Main Workflows</h2><ul>'+cs.features.map(function(f){return '<li>'+esc(f)+'</li>'}).join('')+'</ul></section>';
+      h+='<section class="case-section"><h2>Project Overview</h2><p data-case-context>'+esc(cs.context||p.descriptionEn||'')+'</p></section>';
+      if(cs.features&&cs.features.length)h+='<section class="case-section"><h2>Main Workflows</h2><ul data-case-features>'+cs.features.map(function(f){return '<li>'+esc(f)+'</li>'}).join('')+'</ul></section>';
       if(cs.scope)h+='<section class="case-section"><h2>Scope &amp; Evidence</h2><p>'+esc(cs.scope)+'</p></section>';
     }
   }
@@ -79,5 +79,6 @@ fetch('/api/bootstrap').then(function(r){return r.json()}).then(function(d){
   document.getElementById('app').innerHTML = '<p style="color:hsl(var(--muted-foreground))">Could not load this project right now.</p>';
 });
 </script>
+<script src="/language.js" defer></script>
 </body>
 </html>
