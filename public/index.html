@@ -53,7 +53,7 @@ header{position:sticky;top:0;z-index:50;background:rgba(23,26,28,.82);backdrop-f
 .brand{display:flex;align-items:center;gap:12px}
 .mono{width:42px;height:42px;border-radius:12px;background:var(--blue);display:grid;place-items:center;font-family:Sora;font-weight:800;font-size:16px;color:#fff;box-shadow:0 6px 18px rgba(66,148,255,.35)}
 .brand-name{font-family:Sora;font-weight:700;font-size:15px;line-height:1.15}
-.brand-role{font-size:11px;color:var(--muted)}
+.brand>span:not(.mono){display:flex;flex-direction:column;gap:2px;line-height:1.15}.brand-role{display:block;font-size:11px;line-height:1.15;color:var(--muted)}
 .links{display:flex;gap:28px;font-size:14px;color:var(--muted)}
 .links a{position:relative;padding:4px 0;transition:color .2s}
 .links a:hover,.links a.active{color:var(--text)}
@@ -234,7 +234,7 @@ footer{padding:24px 0 20px;margin-top:0;text-align:center}.foot-grid{flex-direct
   <div class="wrap nav">
     <a class="brand" href="#home">
       <span class="mono">ENG</span>
-      <span><span class="brand-name" id="brandName">Angluos Rezq</span><br/><span class="brand-role">Software Engineer</span></span>
+      <span><span class="brand-name" id="brandName">Angluos Rezq</span><span class="brand-role">Software Engineer</span></span>
     </a>
     <nav class="links">
       <a href="#home" class="active">Home</a>
@@ -390,7 +390,7 @@ footer{padding:24px 0 20px;margin-top:0;text-align:center}.foot-grid{flex-direct
     <div class="foot-grid">
       <a class="brand" href="#home">
         <span class="mono">ENG</span>
-        <span><span class="brand-name">Angluos Rezq</span><br/><span class="brand-role">Software Engineer</span></span>
+        <span><span class="brand-name">Angluos Rezq</span><span class="brand-role">Software Engineer</span></span>
       </a>
       <nav class="foot-links">
         <a href="#home">Home</a><a href="#skills">Skills</a><a href="#about">About</a><a href="#projects">Portfolio</a><a href="#contact">Contact</a>
