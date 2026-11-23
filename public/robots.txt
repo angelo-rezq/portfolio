@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /dash-admin
+Disallow: /login
+Disallow: /rotate
+
+Sitemap: https://angelo-portfolio.angluosr.workers.dev/sitemap.xml
