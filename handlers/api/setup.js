@@ -1,6 +1,6 @@
 import { getDb, getKV, setKV, pbkdf2hex, randomHex } from "../_lib.js";
 
-const SETUP_TOKEN = "REPLACE_WITH_NEW_TOKEN_IF_SETUP_EVER_NEEDED_AGAIN";
+const SETUP_TOKEN = "0947aa8d88c0a6fa15a9059d273aa88af6ee4f7e1da832b1";
 
 export async function onRequestPost({ request, env }) {
   const db = await getDb(env);
