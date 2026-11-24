@@ -75,5 +75,110 @@
       "captionEn": "Digital solutions & services",
       "caption": "الحلول الرقمية والخدمات"
     }
+  ],
+  "2": [
+    {
+      "image": "/img-project/screenshot-1776609555432.png",
+      "captionEn": "Barber discovery & nearby options",
+      "caption": "استعراض الحلاقين والخيارات القريبة"
+    },
+    {
+      "image": "/img-project/screenshot-1776609631490.png",
+      "captionEn": "Barber profile & available services",
+      "caption": "ملف الحلاق والخدمات المتاحة"
+    },
+    {
+      "image": "/img-project/screenshot-1776610495985.png",
+      "captionEn": "Account sign-in",
+      "caption": "تسجيل الدخول للحساب"
+    }
+  ],
+  "4": [
+    {
+      "image": "/img-project/صلحهالي.png",
+      "captionEn": "Home & service categories",
+      "caption": "الرئيسية وأقسام الخدمات"
+    },
+    {
+      "image": "/img-project/صلحهالي3.jpg",
+      "captionEn": "Customer & provider role selection",
+      "caption": "اختيار دور العميل أو مقدم الخدمة"
+    },
+    {
+      "image": "/img-project/صلحهالي.jpg",
+      "captionEn": "Location permission flow",
+      "caption": "خطوات السماح بالموقع"
+    },
+    {
+      "image": "/img-project/صلحهالي4.png",
+      "captionEn": "Account sign-in",
+      "caption": "تسجيل الدخول"
+    },
+    {
+      "image": "/img-project/صلحهالي5.png",
+      "captionEn": "Account registration",
+      "caption": "إنشاء حساب"
+    }
+  ],
+  "7": [
+    {
+      "image": "/img-project/متجر.jpg",
+      "captionEn": "Product catalog & category navigation",
+      "caption": "كتالوج المنتجات والتنقل بين الأقسام"
+    },
+    {
+      "image": "/img-project/متجر اللكتروني.jpg",
+      "captionEn": "Store administration & order list",
+      "caption": "إدارة المتجر وقائمة الطلبات"
+    },
+    {
+      "image": "/img-project/متجر (2).jpg",
+      "captionEn": "Product cards & store homepage",
+      "caption": "بطاقات المنتجات والصفحة الرئيسية"
+    }
+  ],
+  "5": [
+    {
+      "image": "/img-project/Snapshot - اشارتك (0 01.72).png",
+      "captionEn": "App launch screen",
+      "caption": "شاشة بداية التطبيق"
+    },
+    {
+      "image": "/img-project/Snapshot - اشارتك (0 02.88).png",
+      "captionEn": "Account sign-in",
+      "caption": "تسجيل الدخول"
+    },
+    {
+      "image": "/img-project/Snapshot - اشارتك (0 19.60).png",
+      "captionEn": "Welcome & voice assistance",
+      "caption": "الترحيب والمساعدة الصوتية"
+    },
+    {
+      "image": "/img-project/Snapshot - اشارتك (2 01.28).png",
+      "captionEn": "Voice interaction screen",
+      "caption": "شاشة التفاعل الصوتي"
+    }
+  ],
+  "1795438651965": [
+    {
+      "image": "/project-gallery/skillr-03.webp",
+      "captionEn": "Customer & specialist role selection",
+      "caption": "اختيار دور العميل أو المتخصص"
+    },
+    {
+      "image": "/project-gallery/skillr-16.webp",
+      "captionEn": "Popular services & categories",
+      "caption": "الخدمات الشائعة والأقسام"
+    },
+    {
+      "image": "/project-gallery/skillr-10.webp",
+      "captionEn": "Location permission flow",
+      "caption": "خطوات السماح بالموقع"
+    },
+    {
+      "image": "/project-gallery/skillr-15.webp",
+      "captionEn": "Phone verification screen",
+      "caption": "شاشة تأكيد رقم الهاتف"
+    }
   ]
 }
