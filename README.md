@@ -60,3 +60,42 @@ npx wrangler deploy   # publish to the edge
 [![Email](https://img.shields.io/badge/Email-angelo.rezq.dev%40gmail.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:angelo.rezq.dev@gmail.com)
 
 </div>
+
+## SEO and Google Search Console
+
+The production site is `https://eng-angluos-rezq.angluosr.workers.dev`.
+
+- `public/sitemap.xml` lists every public page (home, project case studies,
+  privacy, terms) with `hreflang` alternates for `en` and `ar`.
+- `public/robots.txt` allows public pages and blocks `/dash-admin`,
+  `/login`, `/rotate`, `/setup` and `/index-legacy.html`.
+- Unknown paths serve `public/404.html` with a real 404 status.
+- Private pages also send an `X-Robots-Tag: noindex, nofollow` header and a
+  `noindex` meta tag.
+
+### Verify the site in Google Search Console (one-time, manual)
+
+1. Open <https://search.google.com/search-console> and choose **Add
+   property** -> **URL prefix**, then enter
+   `https://eng-angluos-rezq.angluosr.workers.dev`.
+2. Pick the **HTML tag** verification method and copy the token from the
+   `content` attribute of the meta tag Google shows.
+3. Add the token as the worker variable `GOOGLE_SITE_VERIFICATION`, either:
+   - in `wrangler.toml` under `[vars]` (uncomment the block at the bottom of
+     the file and paste the token), then redeploy with
+     `npx wrangler deploy --name eng-angluos-rezq`, or
+   - in the Cloudflare dashboard: Workers & Pages -> `eng-angluos-rezq` ->
+     Settings -> Variables and Secrets -> add `GOOGLE_SITE_VERIFICATION`
+     (type: Text) with the token, then save.
+   The worker injects the `<meta name="google-site-verification">` tag into
+   every HTML page only while this variable is set. No token is committed to
+   the repo.
+4. Back in Search Console, click **Verify**.
+5. After verification, go to **Sitemaps** and submit
+   `https://eng-angluos-rezq.angluosr.workers.dev/sitemap.xml`.
+6. Use **URL Inspection** on the home page (and any important project page)
+   and choose **Request Indexing**.
+
+Indexing is confirmed only inside Search Console; implementing the above
+does not by itself make the site indexed or ranked.
+
