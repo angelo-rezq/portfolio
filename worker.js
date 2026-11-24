@@ -7,6 +7,35 @@ import * as login from "./handlers/api/auth/login.js";
 import * as setup from "./handlers/api/setup.js";
 import * as rotate from "./handlers/api/rotate.js";
 
+
+const PRIVATE_PATHS = ["/dash-admin", "/login", "/rotate", "/setup", "/index-legacy.html"];
+
+function isPrivatePath(p) {
+  return PRIVATE_PATHS.some((x) => p === x || p.startsWith(x + "/"));
+}
+
+async function serveAsset(request, env) {
+  const pathname = new URL(request.url).pathname;
+  let res = await env.ASSETS.fetch(request);
+  const type = res.headers.get("content-type") || "";
+  if (!type.includes("text/html")) return res;
+  const headers = new Headers(res.headers);
+  if (isPrivatePath(pathname)) headers.set("X-Robots-Tag", "noindex, nofollow");
+  res = new Response(res.body, { status: res.status, statusText: res.statusText, headers });
+  const token = env.GOOGLE_SITE_VERIFICATION;
+  if (token) {
+    const safe = String(token).replace(/["<>]/g, "");
+    res = new HTMLRewriter()
+      .on("head", {
+        element(el) {
+          el.append(`<meta name="google-site-verification" content="${safe}"/>`, { html: true });
+        },
+      })
+      .transform(res);
+  }
+  return res;
+}
+
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
@@ -33,7 +62,7 @@ export default {
       if (p === "/api/setup" && m === "POST") return await setup.onRequestPost({ request, env });
       if (p === "/api/rotate" && m === "POST") return await rotate.onRequestPost({ request, env });
       if (p.startsWith("/api/")) return Response.json({ success: false, error: "Not found" }, { status: 404 });
-      return env.ASSETS.fetch(request);
+      return await serveAsset(request, env);
     } catch (e) {
             return Response.json({ success: false, error: "Internal error" }, { status: 500 });
     }
