@@ -180,5 +180,22 @@
       "captionEn": "Phone verification screen",
       "caption": "شاشة تأكيد رقم الهاتف"
     }
+  ],
+  "1795438651961": [
+    {
+      "image": "/project-gallery/faroj-dashboard.webp",
+      "captionEn": "Dashboard & quick order · interface preview",
+      "caption": "لوحة التحكم والطلب السريع · معاينة الواجهة"
+    },
+    {
+      "image": "/project-gallery/faroj-ingredients.webp",
+      "captionEn": "Ingredients & stock alerts · interface preview",
+      "caption": "المكونات وتنبيهات المخزون · معاينة الواجهة"
+    },
+    {
+      "image": "/project-gallery/faroj-stock-movements.webp",
+      "captionEn": "Stock movement tracking · interface preview",
+      "caption": "تتبع حركات المخزون · معاينة الواجهة"
+    }
   ]
 }
