@@ -32,5 +32,48 @@
       "captionEn": "Service-area management",
       "caption": "إدارة مناطق الخدمة"
     }
+  ],
+  "3": [
+    {
+      "image": "/img-project/Snapshot - سدرة333 (0 00.00).png",
+      "captionEn": "Agency homepage",
+      "caption": "الصفحة الرئيسية للوكالة"
+    }
+  ],
+  "6": [
+    {
+      "image": "/project-gallery/mraya-home.webp",
+      "captionEn": "Arts centre homepage",
+      "caption": "الصفحة الرئيسية لمركز الفنون"
+    },
+    {
+      "image": "/project-gallery/mraya-services.webp",
+      "captionEn": "Creative services & venue offerings",
+      "caption": "الخدمات الإبداعية ومساحات المركز"
+    }
+  ],
+  "8": [
+    {
+      "image": "/project-gallery/zone-courses.webp",
+      "captionEn": "Course catalog & category filters",
+      "caption": "كتالوج الكورسات والتصفية حسب المجال"
+    },
+    {
+      "image": "/project-gallery/zone-course.webp",
+      "captionEn": "Course details & learning outcomes",
+      "caption": "تفاصيل الكورس وأهداف التعلم"
+    }
+  ],
+  "hexa-plus": [
+    {
+      "image": "/project-gallery/hexa-home.webp",
+      "captionEn": "Agency homepage",
+      "caption": "الصفحة الرئيسية للشركة"
+    },
+    {
+      "image": "/project-gallery/hexa-services.webp",
+      "captionEn": "Digital solutions & services",
+      "caption": "الحلول الرقمية والخدمات"
+    }
   ]
 }
