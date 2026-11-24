@@ -10,7 +10,27 @@ const pairs={
 pairs['I am a Software Engineer based in Egypt, specializing in crafting premium web experiences and cross-platform mobile applications using Flutter. I focus on creating clean, efficient, and scalable code that solves real-world problems.']='أنا مهندس برمجيات مقيم في مصر، أعمل على تطوير مواقع الويب وتطبيقات الموبايل متعددة المنصات باستخدام Flutter. أركز على كتابة كود واضح وفعّال وقابل للتوسع لحل مشكلات واقعية.';
 const taglinesAr={'SpeakFlow':'تعلّم اللغات بالممارسة','Royal Cut':'تجربة حجز للحلاقة','SIDRA - Digital Agency':'وكالة تسويق مدعومة بالذكاء الاصطناعي','HEXA PLUS':'موقع وكالة ومساحة عمل للأعمال بلغتين','Worker-Client Connection App':'تطبيق حجز خدمات باستخدام Flutter','E-Learning and Training Website':'إدارة الدورات والمدفوعات'};
 const taglinesEn={'1795438651961':'Restaurant management system','1795438651962':'Café ordering and operations','1795438651963':'Theatre ticket booking platform','1795438651964':'Barber booking, web and mobile','1795438651965':'Service marketplace app design','6':'Arts and creativity academy','8':'Learning management system','9':'Restaurant management system','12':'Recycling rewards app','4':'Maintenance services platform','5':'Smart assistance for visually impaired users','7':'Online shopping experience','10':'Professional portfolio','11':'Specialized legal services'};
-const originals=new WeakMap();let language=localStorage.getItem('portfolio-language')==='ar'?'ar':'en';let data=null;
+const seoMeta={
+ en:{homeTitle:'Eng. Angluos Rezq | Software Engineer',homeDesc:'Eng. Angluos Rezq, Software Engineer. Explore web platforms, Flutter applications and project case studies.',suffix:'Eng. Angluos Rezq',locale:'en_US',projectDesc:'Project case study by Eng. Angluos Rezq, Software Engineer.'},
+ ar:{homeTitle:'أنجلوس رزق | مهندس برمجيات',homeDesc:'أنجلوس رزق (Eng. Angluos Rezq)، مهندس برمجيات من مصر. استعرض منصات الويب وتطبيقات الموبايل ودراسات حالة المشاريع.',suffix:'أنجلوس رزق',locale:'ar_EG',projectDesc:'مشروع من تنفيذ م. أنجلوس رزق، مهندس برمجيات.'}
+};
+function setMeta(attr,key,value){let m=document.head.querySelector('meta['+attr+'="'+key+'"]');if(!m){m=document.createElement('meta');m.setAttribute(attr,key);document.head.appendChild(m)}m.setAttribute('content',value)}
+function setLink(rel,key,href){const sel=key?'link[rel="'+rel+'"][hreflang="'+key+'"]':'link[rel="'+rel+'"]';let l=document.head.querySelector(sel);if(!l){l=document.createElement('link');l.rel=rel;if(key)l.setAttribute('hreflang',key);document.head.appendChild(l)}l.href=href}
+function langUrl(l){let path=location.pathname;if(path.endsWith('/index.html'))path=path.slice(0,-10);const u=new URL(location.origin+path);const q=new URLSearchParams(location.search);if(l)q.set('lang',l);else q.delete('lang');u.search=q.toString();return u.href}
+function applySeo(){
+ const s=seoMeta[language];let title=s.homeTitle,desc=s.homeDesc;
+ const id=new URLSearchParams(location.search).get('id');
+ if(document.querySelector('#app')&&id&&data){const p=data.projects.find(x=>String(x.id)===id);
+  if(p){title=p.name+' | '+s.suffix;const tag=language==='ar'?(taglinesAr[p.name]||p.tagline):(taglinesEn[p.id]||p.taglineEn||p.tagline);desc=(tag?String(tag).replace(/\.+$/,'')+'. ':'')+s.projectDesc}}
+ document.title=title;
+ setMeta('name','description',desc);
+ setMeta('property','og:title',title);setMeta('property','og:description',desc);setMeta('property','og:locale',s.locale);setMeta('property','og:url',langUrl(language));
+ setMeta('name','twitter:title',title);setMeta('name','twitter:description',desc);
+ setLink('canonical',null,langUrl(language));
+ setLink('alternate','en',langUrl('en'));setLink('alternate','ar',langUrl('ar'));setLink('alternate','x-default',langUrl(null));
+}
+
+const originals=new WeakMap();const urlLang=new URLSearchParams(location.search).get('lang');let language=(urlLang==='ar'||urlLang==='en')?urlLang:(localStorage.getItem('portfolio-language')==='ar'?'ar':'en');if(urlLang==='ar'||urlLang==='en')localStorage.setItem('portfolio-language',language);let data=null;
 function translate(){
  document.documentElement.lang=language;document.documentElement.dir=language==='ar'?'rtl':'ltr';
  const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let n;
@@ -26,8 +46,9 @@ function translate(){
  const id=new URLSearchParams(location.search).get('id'),p=data.projects.find(x=>String(x.id)===id);
  if(p&&document.querySelector('#app')){document.querySelectorAll('[data-project-description]').forEach(el=>{el.textContent=language==='ar'?(p.description||p.descriptionEn):(p.descriptionEn||p.description)});document.querySelectorAll('[data-project-tagline]').forEach(el=>{el.textContent=language==='ar'?(taglinesAr[p.name]||p.tagline||''):(taglinesEn[p.id]||p.taglineEn||p.tagline||'')});document.querySelectorAll('[data-case-field]').forEach(el=>{const field=el.dataset.caseField;el.textContent=language==='ar'?(p.caseStudy.ar?.[field]||p.caseStudy[field]):p.caseStudy[field]});document.querySelectorAll('[data-case-context]').forEach(el=>{el.textContent=language==='ar'?(p.description||p.caseStudy.context):(p.caseStudy.context||p.descriptionEn)});document.querySelectorAll('[data-case-features]').forEach(el=>{const original=p.caseStudy.features||[];const items=language==='ar'?(p.description||'').split('،').filter(Boolean):original;el.replaceChildren(...items.map(t=>{const li=document.createElement('li');li.textContent=t;return li}))});document.querySelectorAll('.pj-shot figcaption:not([data-gallery-en])').forEach((el,i)=>{const shot=(p.screenshots||[])[i];if(shot)el.textContent=language==='ar'?(shot.caption||shot.captionEn):(shot.captionEn||shot.caption)})}
  }
+ applySeo();
 }
-const button=document.createElement('button');button.type='button';button.dataset.languageSwitch='';button.className='language-switch';button.onclick=()=>{language=language==='ar'?'en':'ar';localStorage.setItem('portfolio-language',language);translate()};
+const button=document.createElement('button');button.type='button';button.dataset.languageSwitch='';button.className='language-switch';button.onclick=()=>{language=language==='ar'?'en':'ar';localStorage.setItem('portfolio-language',language);const u=new URL(location.href);u.searchParams.set('lang',language);history.replaceState(null,'',u);translate()};
 (document.querySelector('header .nav')||document.querySelector('body > div')||document.body).appendChild(button);
 const style=document.createElement('style');style.textContent=`.language-switch{font:600 12px Inter,Arial,sans-serif;border:1px solid #4294ff66;border-radius:8px;padding:8px 11px;background:#1d2226;color:#fff;cursor:pointer;white-space:nowrap;z-index:40}html[dir=rtl] body{font-family:Arial,Inter,sans-serif}html[dir=rtl] h1,html[dir=rtl] h2,html[dir=rtl] h3{font-family:Arial,Sora,sans-serif;letter-spacing:0}html[dir=rtl] .eyebrow{letter-spacing:0}html[dir=rtl] .proj .go{right:auto;left:15px}html[dir=rtl] .proj .meta{padding-right:18px;padding-left:42px}html[dir=rtl] .case-section ul{padding-right:20px;padding-left:0}html[dir=rtl] .proj small{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}body>.container>.language-switch{position:fixed;top:14px;inset-inline-end:16px}.proj small{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}@media(max-width:600px){header .nav{column-gap:8px}.language-switch{font-size:11px;padding:8px}.nav>.btn{font-size:10px;padding:9px 11px}.nav{display:grid!important;grid-template-columns:minmax(0,1fr) auto auto;gap:10px!important}.nav .links{grid-column:1/-1;grid-row:2}.nav .brand{grid-column:1;grid-row:1}.nav>.btn{grid-column:2;grid-row:1}.nav>.language-switch{grid-column:3;grid-row:1}.nav>.btn .arrow{display:none}.brand{gap:7px}.brand-name{font-size:12px}.brand-role{font-size:9px}}`;
  document.head.appendChild(style);

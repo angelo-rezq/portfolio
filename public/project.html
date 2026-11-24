@@ -3,8 +3,20 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Project - Angelo</title>
-<meta name="description" content="Project case studies by Eng. Angluos Rezq, Software Engineer."/>
+<title>Project Case Study | Eng. Angluos Rezq</title>
+<meta name="description" content="Project case study by Eng. Angluos Rezq, Software Engineer: web platforms, Flutter applications and product design."/>
+<meta property="og:title" content="Project Case Study | Eng. Angluos Rezq"/>
+<meta property="og:description" content="Web platforms, Flutter applications and product design case studies by Eng. Angluos Rezq."/>
+<meta property="og:type" content="article"/>
+<meta property="og:url" content="https://eng-angluos-rezq.angluosr.workers.dev/project"/>
+<meta property="og:image" content="https://eng-angluos-rezq.angluosr.workers.dev/hero.jpg"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:locale:alternate" content="ar_EG"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="canonical" href="https://eng-angluos-rezq.angluosr.workers.dev/project"/>
+<link rel="alternate" hreflang="en" href="https://eng-angluos-rezq.angluosr.workers.dev/project?lang=en"/>
+<link rel="alternate" hreflang="ar" href="https://eng-angluos-rezq.angluosr.workers.dev/project?lang=ar"/>
+<link rel="alternate" hreflang="x-default" href="https://eng-angluos-rezq.angluosr.workers.dev/project"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Sora:wght@400;600;700;800&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Source+Code+Pro:wght@400;600&amp;display=swap" rel="stylesheet"/>
@@ -40,7 +52,7 @@ Promise.all([fetch('/api/bootstrap').then(r=>r.json()),fetch('/case-studies.json
   var app = document.getElementById('app');
   if(!id){app.innerHTML='<h1 style="font:700 32px Sora;margin-bottom:24px">Project Library</h1><div class="pj-list">'+list.map(function(x){return '<a href="/project.html?id='+encodeURIComponent(x.id)+'">'+(x.image?'<img src="'+esc(x.image)+'" alt="'+esc(x.name)+'">':'')+'<h2>'+esc(x.name)+'</h2><p style="color:#acb4b9;font-size:13px">'+esc(x.tagline)+'</p></a>'}).join('')+'</div>';return;}
   if(!p){ app.innerHTML = '<p style="color:hsl(var(--muted-foreground))">Project not found. <a href="/#projects" style="color:hsl(var(--primary))">Back to projects</a></p>'; return; }
-  document.title = p.name + ' - Angelo';
+  document.title = p.name + ' | Eng. Angluos Rezq';
   var h = '';
   if(p.image) h += '<img class="pj-hero-img" src="'+esc(p.image)+'" alt="'+esc(p.name)+'"/>';
   h += '<div style="margin-top:1.5rem;display:flex;flex-wrap:wrap;align-items:center;gap:.7rem">';
