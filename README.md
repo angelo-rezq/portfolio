@@ -80,16 +80,14 @@ The production site is `https://eng-angluos-rezq.angluosr.workers.dev`.
    `https://eng-angluos-rezq.angluosr.workers.dev`.
 2. Pick the **HTML tag** verification method and copy the token from the
    `content` attribute of the meta tag Google shows.
-3. Add the token as the worker variable `GOOGLE_SITE_VERIFICATION`, either:
-   - in `wrangler.toml` under `[vars]` (uncomment the block at the bottom of
-     the file and paste the token), then redeploy with
-     `npx wrangler deploy --name eng-angluos-rezq`, or
-   - in the Cloudflare dashboard: Workers & Pages -> `eng-angluos-rezq` ->
-     Settings -> Variables and Secrets -> add `GOOGLE_SITE_VERIFICATION`
-     (type: Text) with the token, then save.
-   The worker injects the `<meta name="google-site-verification">` tag into
-   every HTML page only while this variable is set. No token is committed to
-   the repo.
+3. Add the token as the worker variable `GOOGLE_SITE_VERIFICATION` in
+   `wrangler.toml` under `[vars]`, then redeploy with
+   `npx wrangler deploy --name eng-angluos-rezq` or push to `main` (the
+   connected Cloudflare build deploys automatically). The token is public by
+   design (Google requires it in a served meta tag), so committing it is
+   safe and keeps it attached to every deploy. The current token is already
+   set. The worker injects the `<meta name="google-site-verification">` tag
+   into every HTML page only while this variable is set.
 4. Back in Search Console, click **Verify**.
 5. After verification, go to **Sitemaps** and submit
    `https://eng-angluos-rezq.angluosr.workers.dev/sitemap.xml`.

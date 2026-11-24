@@ -9,10 +9,10 @@ binding = "ASSETS"
 run_worker_first = true
 not_found_handling = "404-page"
 
-# Google Search Console verification token (section 5 of the SEO spec).
-# Uncomment and paste the real token from Search Console, or set
-# GOOGLE_SITE_VERIFICATION in the Cloudflare dashboard (Worker -> Settings
-# -> Variables and Secrets). The worker injects the verification meta tag
-# into HTML pages only while this variable is set. Never commit a fake code.
-# [vars]
-# GOOGLE_SITE_VERIFICATION = "paste-real-token-here"
+# Google Search Console verification token. This value is public by design
+# (Google requires it to be served in a meta tag on the site), so keeping it
+# here is safe and makes every deploy, including Cloudflare Workers Builds,
+# carry it. The worker injects the verification meta tag into HTML pages
+# only while this variable is set.
+[vars]
+GOOGLE_SITE_VERIFICATION = "Hc9qWWn67abGdHQDyH3kwCWkWJaOhvsLf1bMdKM2BC0"
