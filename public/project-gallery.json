@@ -197,5 +197,27 @@
       "captionEn": "Stock movement tracking · interface preview",
       "caption": "تتبع حركات المخزون · معاينة الواجهة"
     }
+  ],
+  "1795438651962": [
+    {
+      "image": "/project-gallery/matcha-recipes.webp",
+      "captionEn": "Recipe tracking & portion availability",
+      "caption": "متابعة الوصفات والحصص المتاحة"
+    },
+    {
+      "image": "/project-gallery/matcha-navigation.webp",
+      "captionEn": "Mobile dashboard navigation",
+      "caption": "أقسام لوحة التحكم على الموبايل"
+    },
+    {
+      "image": "/project-gallery/matcha-inventory.webp",
+      "captionEn": "Inventory & ingredient management",
+      "caption": "إدارة المخزون والخامات"
+    },
+    {
+      "image": "/project-gallery/matcha-menu.webp",
+      "captionEn": "Menu items & pricing controls",
+      "caption": "إدارة أصناف المنيو والأسعار"
+    }
   ]
 }
