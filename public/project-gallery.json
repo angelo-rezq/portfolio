@@ -1,0 +1,36 @@
+{
+  "1795438651963": [
+    {
+      "image": "/project-gallery/backstage-show.webp",
+      "captionEn": "Show details & performance dates",
+      "caption": "تفاصيل العرض ومواعيد الليالي"
+    },
+    {
+      "image": "/project-gallery/backstage-booking.webp",
+      "captionEn": "Ticket booking form",
+      "caption": "نموذج حجز التذكرة"
+    },
+    {
+      "image": "/project-gallery/backstage-entry.webp",
+      "captionEn": "Ticket validation at the theatre gate",
+      "caption": "التحقق من التذكرة عند بوابة المسرح"
+    },
+    {
+      "image": "/project-gallery/backstage-shows.webp",
+      "captionEn": "Show & performance management",
+      "caption": "إدارة العروض وليالي المسرح"
+    }
+  ],
+  "1795438651964": [
+    {
+      "image": "/project-gallery/rayeq-services.webp",
+      "captionEn": "Service catalog & pricing controls",
+      "caption": "كتالوج الخدمات وإدارة الأسعار"
+    },
+    {
+      "image": "/project-gallery/rayeq-areas.webp",
+      "captionEn": "Service-area management",
+      "caption": "إدارة مناطق الخدمة"
+    }
+  ]
+}
